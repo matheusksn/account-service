@@ -13,7 +13,7 @@ public class BaseController {
 	private Environment environment;
 	
 	private String getPort() {
-		return environment.getProperty("server.port");
+		return environment.getProperty("local.server.port");
 	}
 	
 	protected ResponseEntity getResponseError(String message, HttpStatus status) {

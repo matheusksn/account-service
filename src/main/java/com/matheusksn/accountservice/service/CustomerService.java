@@ -7,4 +7,6 @@ public interface CustomerService {
 
 	CustomerResponseDto saveNewCustomer(CustomerDto customerDto);
 
+	CustomerResponseDto findCostumer(String account);
+
 }

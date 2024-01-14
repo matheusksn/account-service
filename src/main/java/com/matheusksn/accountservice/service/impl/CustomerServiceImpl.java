@@ -1,5 +1,6 @@
 package com.matheusksn.accountservice.service.impl;
 
+import java.util.Optional;
 import java.util.Random;
 
 import org.modelmapper.ModelMapper;
@@ -32,6 +33,16 @@ public class CustomerServiceImpl implements CustomerService{
 		newCostumer.setEnable(true);
 			
 		return mapper.map(repository.save(newCostumer), CustomerResponseDto.class);
+	}
+	
+	@Override
+	public CustomerResponseDto findCostumer(String account) {
+		Optional<Customer> response = repository.findByAccountNumber(account);
+		
+		if(!response.isPresent()) {
+			throw new RuntimeException(String.format("A conta %s não é válida", account));
+		}
+		return mapper.map(response.get(), CustomerResponseDto.class);
 	}
 	
 	

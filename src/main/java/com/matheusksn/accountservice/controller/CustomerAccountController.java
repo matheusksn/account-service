@@ -2,6 +2,8 @@ package com.matheusksn.accountservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,15 @@ public class CustomerAccountController extends BaseController {
 		}
 	}
 	
+	@GetMapping("{account}")
+	public ResponseEntity isValid(@PathVariable String account) {
+		try {	
+			return getResponseSuccess(service.findCostumer(account),"Conta Válida", HttpStatus.OK);
+			
+		}catch(Exception error){
+			return getResponseError(error.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);				
+		}
+	}
 	
 
 }
