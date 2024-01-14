@@ -1,5 +1,7 @@
 package com.matheusksn.accountservice.entity;
 
+import java.util.Random;
+
 import javax.persistence.*;
 import lombok.Data;
 
@@ -26,5 +28,24 @@ public class Customer {
 	@Column
 	private String nickname;
 	
+
+    @PrePersist
+    private void generateAccountNumber() {
+        if (accountNumber == null || accountNumber.isEmpty()) {
+            accountNumber = generateRandomAccountNumber();
+        }
+    }
+
+    private String generateRandomAccountNumber() {
+
+        Random random = new Random();
+        StringBuilder accountNumber = new StringBuilder();
+
+        for (int i = 0; i < 6; i++) {
+            accountNumber.append(random.nextInt(10));
+        }
+
+        return accountNumber.toString();
+    }
 
 }

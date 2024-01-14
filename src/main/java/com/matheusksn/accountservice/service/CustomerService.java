@@ -1,12 +1,10 @@
 package com.matheusksn.accountservice.service;
 
-import org.springframework.stereotype.Service;
-
 import com.matheusksn.accountservice.dto.CustomerDto;
+import com.matheusksn.accountservice.dto.CustomerResponseDto;
 
-@Service
 public interface CustomerService {
 
-	CustomerDto saveNewCustomer(CustomerDto customerDto);
+	CustomerResponseDto saveNewCustomer(CustomerDto customerDto);
 
 }
